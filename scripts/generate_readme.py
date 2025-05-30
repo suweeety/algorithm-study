@@ -1,7 +1,7 @@
 import os
 
 README_PATH= "README.md"
-SOLUTION_DIR = "solution"
+SOLUTION_DIR = "solutions"
 
 header = """# Algorithm Study
 
