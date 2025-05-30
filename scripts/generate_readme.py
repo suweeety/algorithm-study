@@ -1,7 +1,7 @@
 import os
 
 README_PATH= "README.md"
-SOLUTION_DIR = "solution"
+SOLUTION_DIR = "solutions"
 
 header = """# Algorithm Study
 
@@ -21,7 +21,7 @@ for file in sorted(os.listdir(SOLUTION_DIR)):
         rows.append(f"| baekjoon | {problem_no} | {title} | | [링크]({SOLUTION_DIR}/{file}) |")
 
 # README 내용 생성
-with open(README_PATH, "w") as f;
+with open(README_PATH, "w") as f:
     f.write(header)
-    for row in rows;
+    for row in rows:
         f.write(row + "\n")
