@@ -23,5 +23,5 @@ for file in sorted(os.listdir(SOLUTION_DIR)):
 # README 내용 생성
 with open(README_PATH, "w") as f:
     f.write(header)
-    for row in rows;
+    for row in rows:
         f.write(row + "\n")
