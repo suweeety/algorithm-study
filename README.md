@@ -7,6 +7,7 @@
 - **Structure**: 문제별 폴더 구성 (언어별 소스 코드 포함)
 
 ### 커밋 메시지 구조
+```terminal
 [유형] 플랫폼_문제번호_문제이름
 
 1. 기본 형식
@@ -27,3 +28,4 @@ Solve: BOJ_2562_최댓값 (Java, Python)
 
 README를 수정했을 때
 Docs: Update README.md (Add SWEA section)
+```
