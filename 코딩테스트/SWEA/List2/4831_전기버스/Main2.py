@@ -15,3 +15,4 @@ for t in range(1, int(input())+1):
         return 0
  
     print(f'#{t} {ride(0, 0)}')
+
