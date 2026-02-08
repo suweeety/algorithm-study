@@ -1,11 +1,19 @@
-for tc in range(int(input)):
-    # 정수 A, B 의 길이 입력받기
-    N, M = map(int, input().split())
-    # 정수 A, B 길이만큼 A, B 입력받기
-    A = list(map(int, input().split()))
-    B = list(map(int, input().split()))
-
-    curr = 0
-    for i in range(N):
-        if curr < M and A[i] == B[curr]:
-            curr += 1
+for tc in range(1, int(input())+1):
+    pass
+    n, m = map(int, input().split())
+    arr = list(map(int, input().split()))
+    find_arr = list(map(int, input().split()))
+    
+    cnt = 0
+    start = 0
+    end = n
+    for i in range(m):
+        for j in range(start, end):
+            if find_arr[i] == arr[j]:
+                cnt += 1
+                start = j
+                break
+    if cnt == m:
+        print(f'#{tc} {cnt} {m} YES')
+    else:
+        print(f'#{tc} {cnt} {m} NO')
