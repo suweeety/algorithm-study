@@ -4,9 +4,6 @@ input = sys.stdin.readline
 left_arr = list(input().strip())
 right_arr = []
 
-idx = 0
-cnt = 0
-
 for _ in range(int(input())):
     arr = input().split()
     if arr[0] == 'L' and left_arr:
