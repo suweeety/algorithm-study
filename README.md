@@ -1,7 +1,17 @@
-# 📚 Algorithm Study (Java & Python)
+# 📚 Problem Solving (Java & Python)
+백준(BOJ), 삼성 SW Expert Academy(SWEA), CodeTree 문제 풀이를 기록하는 저장소입니다.
 
-백준(Baekjoon) / SWEA 등 알고리즘 문제 풀이를 기록하는 저장소입니다.
-
-## 🛠️ 개발 환경 및 언어
+## 🛠️ Languages
 - **Languages**: Java, Python
-- **Structure**: 문제별 폴더 구성 (언어별 소스 코드 포함)
+
+## 📂 Repository Structure
+### 백준(BOJ)
+* BOJ.bronze.* : 백준 브론즈 단계 문제
+* BOJ.silver.* : 백준 실버 단계 문제
+* BOJ.gold.* : 백준 골드 단계 문제
+
+### 삼성 SW Expert Academy(SWEA)
+* SWEA.* : 삼성 SW Expert Academy D1 ~ 4 문제
+
+### CodeTree
+* CodeTree.* : CodeTree 단계별 문제 풀이
