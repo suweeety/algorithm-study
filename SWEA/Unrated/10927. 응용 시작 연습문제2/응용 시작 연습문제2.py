@@ -1,29 +1,40 @@
-# 입력받은 긴 16진수 문자열을 한 글자씩 4자리 2진수로 변환
-for tc in range(1, int(input()) + 1):
+# 해시맵 방식 (내장함수 미사용)
+def hex_to_binary(hex_string):
+    # 1. 해시맵(Dictionary)을 이용한 1:1 매핑 테이블 생성
+    # 16진수 1자리는 정확히 2진수 4자리(4-bit)와 매칭된다는 원리를 활용합니다.
+    # 매번 계산할 필요 없이 $O(1)$의 속도로 값을 바로 찾아올 수 있어 속도가 매우 빠릅니다.
+    hex_to_bin_map = {
+        '0': '0000', '1': '0001', '2': '0010', '3': '0011',
+        '4': '0100', '5': '0101', '6': '0110', '7': '0111',
+        '8': '1000', '9': '1001', 'A': '1010', 'B': '1011',
+        'C': '1100', 'D': '1101', 'E': '1110', 'F': '1111'
+    }
+
+    # 2. 제너레이터 표현식과 join()을 활용한 고속 문자열 결합
+    # hex_string.upper(): 혹시 소문자가 섞여 들어오더라도 대문자로 통일하여 에러를 방지합니다.
+    # for char in ... : 문자열에서 한 글자씩 꺼내어 딕셔너리의 키(Key)로 사용해 4자리 2진수를 찾습니다.
+    # ''.join(...) : 찾아낸 4자리 2진수 조각들을 '+' 연산자보다 훨씬 빠른 속도로 하나의 긴 문자열로 이어 붙입니다.
+    binary_string = ''.join(hex_to_bin_map[char] for char in hex_string.upper())
+    return binary_string
+
+T = int(input())
+
+for tc in range(1, 1 + T):
     N = int(input())
-    hex_str = input().strip()
+    hex = input().strip()   # 16진수 문자열 입력
+    ans = []    # 변환된 10진수 숫자 담기
+    hx_2 = hex_to_binary(hex) # 16진수 -> 긴 2진수 문자열로 한 번에 변환
 
-    bin_str = ""
-    for char in hex_str:
-        # 1. 문자를 10진수 정수로 변환 (ex. B -> 11)
-        decimal_val = int(char, 16)
-        # 2. 10진수를 2진수 문자열로 변환하고 앞에 0b를 제거 (ex. 11 -> '1011')
-        binary_val = bin(decimal_val)[2:]
-        # 3. 무조건 4자리를 맞추기 위해 빈자리는 0으로 채움 (예: '0' -> '0000')
-        binary_val = binary_val.zfill(4)
-
-        bin_str += binary_val # 완성된 4자리 2진수를 붙이기
-
-    # 7자리씩(7-bit) 자르기
-    res = []
-
-    for i in range(0, len(bin_str), 7):
-        chunk = bin_str[i : i + 7]
-
-        # 마지막에 7-bit를 채울 수 없는 경우의 비트는 버린다
-        if len(chunk) == 7:
-            # 2진수 -> 10진수로 변환
-            decimal_chunk = int(chunk, 2)
-            res.append(str(decimal_chunk))
-
-    print(f"#{tc} {' '.join(res)}")
+    # 3. 슬라이싱(Slicing)을 위한 반복 횟수 계산 (이 코드의 핵심 아이디어!)
+    # N * 4 : 16진수 N글자를 2진수로 바꾸면 총 길이는 (N * 4) 비트가 됩니다.
+    # // 7 : 이것을 7비트씩 묶기 위해 7로 나눈 몫만 구합니다.
+    # 이렇게 하면 '마지막에 남는 자투리 비트는 버린다'는 문제 조건을 if문 없이 자동으로 만족시킵니다.
+    for i in range(N * 4 // 7):
+        # 4. 7비트씩 싹둑싹둑 자르기
+        # i가 0일 때: [0 : 7]
+        # i가 1일 때: [7 : 14] ... 이런 식으로 7칸씩 정확히 슬라이싱합니다.
+        bi_str = hx_2[7 * i: 7 * i + 7]
+        # 5. 잘라낸 7자리 2진수 문자열을 10진수 정수로 변환
+        num = int(bi_str, 2)
+        ans.append(num)
+    print(f'#{tc}', *ans)
